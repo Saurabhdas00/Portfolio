@@ -1,0 +1,1329 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, #root, .portfolio-root {
+  background: #181c2b;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Press Start 2P', monospace;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Animated background particles */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.12;
+  animation: bgMove 30s linear infinite;
+}
+@keyframes bgMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 100vw 100vh; }
+}
+
+.portfolio-header {
+  background: #23274d;
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-bottom: 6px solid #ff00cc;
+  text-align: center;
+  width: 100vw;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.character-sprite {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(2px 2px 0 #000);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.portfolio-header h1 {
+  margin: 0 0 0.3rem 0;
+  color: #00ff99;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #000, 0 0 8px #00ff99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.arcade-icon {
+  font-size: 1.8rem;
+  vertical-align: middle;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+.game-ui {
+  margin: 0.5rem 0;
+}
+
+.progress-bar {
+  width: 70%;
+  max-width: 300px;
+  height: 16px;
+  background: #181c2b;
+  border: 3px solid #ffeb3b;
+  margin: 0 auto 0.3rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff99, #ff00cc);
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px #00ff99;
+}
+
+.level-indicator {
+  color: #ffeb3b;
+  font-size: 0.7rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.portfolio-header nav {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.portfolio-header nav a {
+  color: #fff;
+  background: #ff00cc;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  border: 3px solid #00ff99;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
+  font-family: 'Press Start 2P', monospace;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.portfolio-header nav a:hover, .portfolio-header nav a:focus {
+  background: #00ff99;
+  color: #23274d;
+  border-color: #ffeb3b;
+  transform: translateY(-4px) scale(1.08) rotate(-2deg);
+  box-shadow: 8px 8px 0 #000;
+}
+
+.portfolio-header nav a.active {
+  background: #ffeb3b;
+  color: #23274d;
+  border-color: #ff00cc;
+  box-shadow: 6px 6px 0 #000;
+}
+
+.nav-icon {
+  font-size: 0.8rem;
+}
+
+.game-world {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.road-container {
+  position: relative;
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.road-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #ffeb3b 0 20px, transparent 20px 40px);
+  z-index: 0;
+}
+
+.navigation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.backward-btn, .forward-btn {
+  background: #ff00cc;
+  color: #fff;
+  border: 4px solid #00ff99;
+  border-radius: 0;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 #000;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.backward-btn:hover, .forward-btn:hover {
+  background: #00ff99;
+  color: #23274d;
+  border-color: #ffeb3b;
+  box-shadow: 8px 8px 0 #000;
+}
+
+.backward-btn:disabled, .forward-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.current-section-display {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.section-character {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(3px 3px 0 #000);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.section-title {
+  color: #ff00cc;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0 #000, 0 0 8px #ff00cc;
+  margin: 0;
+}
+
+.section-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-section {
+  background: #23274d;
+  margin-bottom: 2.5rem;
+  padding: 2.2rem 5vw 1.7rem 5vw;
+  border: 6px solid #ffeb3b;
+  border-radius: 0;
+  box-shadow: 8px 8px 0 #000;
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-divider {
+  width: 100%;
+  height: 18px;
+  background: repeating-linear-gradient(90deg, #00ff99 0 12px, #ff00cc 12px 24px, #ffeb3b 24px 36px, #23274d 36px 48px);
+  margin: 2rem 0 1.5rem 0;
+  border: none;
+}
+
+.portfolio-section h2 {
+  color: #ff00cc;
+  margin-top: 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 #000, 0 0 8px #ff00cc;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.portfolio-section ul {
+  list-style: square inside;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.portfolio-section a {
+  color: #ffeb3b;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.portfolio-section a:hover {
+  color: #00ff99;
+  background: #ff00cc;
+  text-decoration: none;
+  border-radius: 0;
+  padding: 0 0.2rem;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Character Stats */
+.character-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat {
+  background: #181c2b;
+  padding: 1rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Project Cards */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  background: #181c2b;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 #000;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+.project-icon {
+  font-size: 2rem;
+}
+
+.project-card.main-quest .card-header h3 {
+  flex: none;
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.project-card.main-quest .card-header h3:hover {
+  white-space: normal;
+  background: #111;
+  z-index: 2;
+  position: relative;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #00ff00;
+  box-shadow: 0 0 8px #00ff00;
+}
+
+.project-card .card-header h3[title] {
+  position: relative;
+}
+
+.expand-btn {
+  margin-left: auto;
+  background: #1a1a1a;
+  border: 2px solid #ff00cc;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 #ff00cc;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+  display: flex;
+  align-items: center;
+  height: 2rem;
+}
+
+.expand-btn:hover {
+  background: #ff00cc;
+  color: #1a1a1a;
+  border-color: #fff;
+}
+
+.card-details {
+  border-top: 3px solid #ff00cc;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.card-details p {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.loading-card {
+  text-align: center;
+  padding: 2rem;
+  color: #ffeb3b;
+  font-size: 1rem;
+}
+
+/* Skill Grid */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.skill-category {
+  background: #181c2b;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  padding: 1.5rem;
+}
+
+.skill-category h3 {
+  color: #ffeb3b;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-item {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  font-size: 0.7rem;
+  transition: transform 0.1s;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* Achievement Cards */
+.achievement-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.achievement-card {
+  background: #181c2b;
+  border: 6px solid;
+  box-shadow: 8px 8px 0 #000;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card.legendary {
+  border-color: #ffeb3b;
+  background: linear-gradient(135deg, #181c2b 0%, #2a1f3b 100%);
+}
+
+.achievement-card.epic {
+  border-color: #ff00cc;
+  background: linear-gradient(135deg, #181c2b 0%, #3b1f2a 100%);
+}
+
+.achievement-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+.achievement-card h3 {
+  color: #ffeb3b;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.achievement-card p {
+  margin: 0 0 1rem 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.achievement-rarity {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.6rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Contact Info */
+.contact-info {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #181c2b;
+  padding: 1rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+}
+
+.contact-item a {
+  color: #ffeb3b;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.contact-item a:hover {
+  color: #00ff99;
+  background: #ff00cc;
+  padding: 0.2rem;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Game Placeholder */
+.game-placeholder {
+  text-align: center;
+  padding: 3rem;
+}
+
+.game-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(3px 3px 0 #000);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  animation: bounceIn 0.7s forwards cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: translateY(60px) scale(0.9); }
+  60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+  80% { transform: translateY(4px) scale(0.98); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .portfolio-section {
+    padding: 1.2rem 2vw;
+    width: 95%;
+  }
+  .project-cards, .skill-grid, .achievement-cards {
+    grid-template-columns: 1fr;
+  }
+  .navigation-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .portfolio-header h1 {
+    font-size: 1rem;
+  }
+  .character-sprite {
+    font-size: 2rem;
+  }
+  .section-character {
+    font-size: 2.5rem;
+  }
+  .portfolio-section {
+    padding: 0.7rem 1vw;
+    width: 98%;
+  }
+  .portfolio-section h2 {
+    font-size: 0.8rem;
+  }
+  .skill-items {
+    justify-content: center;
+  }
+}
+
+/* Resume Styles */
+.resume-content {
+  margin-bottom: 2rem;
+}
+
+.resume-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #ff00cc;
+}
+
+.resume-section:last-child {
+  border-bottom: none;
+}
+
+.resume-section h3 {
+  color: #ffeb3b;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  background: #181c2b;
+  padding: 1rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-label {
+  color: #ffeb3b;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.info-value {
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.info-value a {
+  color: #00ff99;
+  text-decoration: none;
+}
+
+.info-value a:hover {
+  color: #ffeb3b;
+  background: #ff00cc;
+  padding: 0.2rem;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.education-item {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1rem;
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.education-header h4 {
+  color: #ffeb3b;
+  margin: 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.education-year {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.education-item p {
+  margin: 0.3rem 0;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.skills-category {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1rem;
+}
+
+.skills-category h4 {
+  color: #ffeb3b;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  font-size: 0.7rem;
+  transition: transform 0.1s;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.project-item {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1.5rem;
+}
+
+.project-header {
+  margin-bottom: 1rem;
+}
+
+.project-header h4 {
+  color: #ffeb3b;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.project-tech {
+  display: block;
+  color: #00ff99;
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-year {
+  display: block;
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  width: fit-content;
+}
+
+.project-details {
+  list-style: square inside;
+  padding-left: 1rem;
+}
+
+.project-details li {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #ffeb3b;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1rem;
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+.achievement-content h4 {
+  color: #ffeb3b;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.achievement-content p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.certification-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.certification-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #181c2b;
+  padding: 1rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.cert-icon {
+  font-size: 1.5rem;
+}
+
+.certification-item span:last-child {
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.download-section {
+  text-align: center;
+  padding: 2rem;
+  background: #181c2b;
+  border: 4px solid #ffeb3b;
+  box-shadow: 6px 6px 0 #000;
+  margin-top: 2rem;
+}
+
+.download-section p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #ffeb3b;
+}
+
+/* Game button style for download */
+.game-btn {
+  display: inline-block;
+  background: #ff00cc;
+  color: #fff;
+  border: 4px solid #00ff99;
+  border-radius: 0;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 #000;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  text-decoration: none;
+}
+
+.game-btn:hover {
+  background: #00ff99;
+  color: #23274d;
+  border-color: #ffeb3b;
+  box-shadow: 8px 8px 0 #000;
+}
+
+/* Responsive adjustments for resume */
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .education-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .achievement-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .resume-section h3 {
+    font-size: 0.9rem;
+  }
+  
+  .info-item, .education-item, .skills-category, .project-item, .achievement-item, .certification-item {
+    padding: 1rem;
+  }
+}
+
+/* About Section Styles */
+.hero-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #181c2b;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+}
+
+.hero-intro p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #fff;
+}
+
+.stat-category {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1.5rem;
+}
+
+.stat-category h3 {
+  color: #ffeb3b;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  background: #23274d;
+  padding: 1rem;
+  border: 3px solid #ff00cc;
+  box-shadow: 4px 4px 0 #000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  color: #ffeb3b;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.stat-value {
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-badge {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  font-size: 0.7rem;
+  transition: transform 0.1s;
+}
+
+.skill-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.hero-attributes {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #ffeb3b;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1.5rem;
+}
+
+.hero-attributes h3 {
+  color: #ffeb3b;
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.attributes-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.attribute {
+  background: #23274d;
+  padding: 1rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.attribute-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.attribute-name {
+  color: #ffeb3b;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.attribute-value {
+  color: #00ff99;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.attribute-bar {
+  width: 100%;
+  height: 12px;
+  background: #181c2b;
+  border: 2px solid #ff00cc;
+  position: relative;
+  overflow: hidden;
+}
+
+.attribute-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff99, #ffeb3b);
+  transition: width 1s ease;
+  box-shadow: 0 0 8px #00ff99;
+}
+
+.hero-quests {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #ff00cc;
+  box-shadow: 6px 6px 0 #000;
+  margin-bottom: 1.5rem;
+}
+
+.hero-quests h3 {
+  color: #ffeb3b;
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quest-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.quest-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #23274d;
+  padding: 1.5rem;
+  border: 3px solid #00ff99;
+  box-shadow: 4px 4px 0 #000;
+  position: relative;
+}
+
+.quest-icon {
+  font-size: 2rem;
+  filter: drop-shadow(2px 2px 0 #000);
+  flex-shrink: 0;
+}
+
+.quest-content h4 {
+  color: #ffeb3b;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.quest-content p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.quest-reward {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.6rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.hero-mission {
+  background: #181c2b;
+  padding: 1.5rem;
+  border: 4px solid #00ff99;
+  box-shadow: 6px 6px 0 #000;
+  text-align: center;
+}
+
+.hero-mission h3 {
+  color: #ffeb3b;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hero-mission p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #fff;
+  font-style: italic;
+}
+
+/* Responsive adjustments for About section */
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quest-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .quest-icon {
+    align-self: center;
+  }
+  
+  .skill-badges {
+    justify-content: center;
+  }
+  
+  .hero-intro p {
+    font-size: 0.9rem;
+  }
+  
+  .stat-category, .hero-attributes, .hero-quests, .hero-mission {
+    padding: 1rem;
+  }
+}
+
+/* Quest Sections */
+.quest-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.quest-section h3 {
+  color: #00ff00;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.quest-section:first-child {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.quest-section:first-child h3 {
+  color: #ffd700;
+  text-shadow: 0 0 5px #ffd700;
+}
+
+.no-side-quests {
+  text-align: center;
+  color: #00ff00;
+  font-size: 1.2rem;
+  padding: 2rem;
+  border: 2px dashed #00ff00;
+  border-radius: 8px;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+/* Main Quest Styling */
+.main-quest {
+  border: 4px solid #00ff99;
+  background: linear-gradient(135deg, #181c2b 0%, #1a2a3b 100%);
+}
+
+.main-quest .card-header h3 {
+  color: #00ff99;
+}
+
+/* Side Quest Styling */
+.side-quest {
+  border: 4px solid #ff00cc;
+  background: linear-gradient(135deg, #181c2b 0%, #3b1f2a 100%);
+  opacity: 0.9;
+}
+
+.side-quest .card-header h3 {
+  color: #ff00cc;
+}
+
+.side-quest-info {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.side-quest-info p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: #ccc;
+  font-style: italic;
+}
+
+.quest-type {
+  background: #ff00cc;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.6rem;
+  border: 2px solid #00ff99;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.small-btn {
+  padding: 0.3rem 0.6rem !important;
+  font-size: 0.7rem !important;
+  margin: 0 !important;
+}
+
+.quest-summary {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #181c2b;
+  border: 3px solid #ffeb3b;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.summary-icon {
+  font-size: 1.2rem;
+  filter: drop-shadow(1px 1px 0 #000);
+}
+
+.summary-text {
+  color: #ffeb3b;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000;
+}
+
+@media (max-width: 600px) {
+  .quest-summary {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
