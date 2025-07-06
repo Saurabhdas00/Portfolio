@@ -1,12 +1,71 @@
-# React + Vite
+# Retro Portfolio with Vite + React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, retro-themed portfolio built with React and Vite. Features:
+- Dynamic GitHub project fetching
+- Retro arcade design
+- Responsive, single-page layout
+- Two built-in mini-games: Tic Tac Toe (You vs Computer) and Rock Paper Scissors
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Install dependencies
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+### 2. Run the development server
+```bash
+npm run dev
+```
+Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Build for production
+```bash
+npm run build
+```
+The static site will be in the `dist/` folder.
+
+## 🎮 Games Included
+- **Tic Tac Toe:** Play against a smart computer opponent.
+- **Rock Paper Scissors:** Classic game, player vs computer.
+
+## 🕹️ Features
+- Retro pixel/arcade UI
+- Dynamic GitHub project list (edit your GitHub username in `App.jsx`)
+- Responsive design
+- Custom favicon (logo.png)
+
+## 🌐 Deployment
+
+### Netlify (Recommended)
+This project is configured for easy Netlify deployment:
+
+1. **Push your code to GitHub**
+2. **Connect to Netlify:**
+   - Go to [netlify.com](https://netlify.com) and sign up/login
+   - Click "New site from Git"
+   - Choose your GitHub repository
+   - Build settings are auto-configured:
+     - Build command: `npm run build`
+     - Publish directory: `dist`
+3. **Deploy!** Your site will be live at a Netlify URL
+
+### Other Options
+You can also deploy the `dist/` folder to any static host:
+- **GitHub Pages** ([guide](https://vitejs.dev/guide/static-deploy.html#github-pages))
+- **Vercel** ([guide](https://vercel.com/docs))
+
+## 📁 Project Structure
+- `src/` — React source code
+- `src/assets/` — Images and icons
+- `public/` — Static files (favicon/logo)
+- `src/TicTacToe.jsx` — Tic Tac Toe game
+- `src/RockPaperScissors.jsx` — Rock Paper Scissors game
+
+## 📝 Customization
+- Update your GitHub username in `App.jsx` to fetch your own projects.
+- Replace `logo.png` in `public/` for your own favicon.
+- Edit sections and styles in `App.jsx` and `App.css`.
+
+---
+Built with ❤️ using [Vite](https://vitejs.dev/) and [React](https://react.dev/).
