@@ -9,6 +9,7 @@ body, #root, .portfolio-root {
   width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* Animated background particles */
@@ -37,6 +38,7 @@ body::before {
   position: sticky;
   top: 0;
   z-index: 10;
+  padding-top: max(1rem, env(safe-area-inset-top));
 }
 
 .character-sprite {
@@ -104,6 +106,7 @@ body::before {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .portfolio-header nav a {
@@ -123,6 +126,9 @@ body::before {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 44px;
 }
 
 .portfolio-header nav a:hover, .portfolio-header nav a:focus {
@@ -198,6 +204,10 @@ body::before {
   font-weight: 700;
   letter-spacing: 1px;
   box-shadow: 4px 4px 0 #000;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 44px;
+  min-width: 44px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
 }
@@ -336,6 +346,8 @@ body::before {
   box-shadow: 6px 6px 0 #000;
   padding: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .project-card:hover {
@@ -398,6 +410,10 @@ body::before {
   display: flex;
   align-items: center;
   height: 2rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .expand-btn:hover {
@@ -901,6 +917,10 @@ body::before {
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .game-btn:hover {
@@ -1325,5 +1345,623 @@ body::before {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+}
+
+/* Enhanced Responsive Design for Smaller Screens */
+@media (max-width: 480px) {
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Ensure proper viewport handling */
+  .portfolio-root {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  /* Header adjustments for very small screens */
+  .portfolio-header {
+    padding: 0.5rem 0.5rem 0.3rem 0.5rem;
+  }
+  
+  .portfolio-header h1 {
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .arcade-icon {
+    font-size: 1.2rem;
+  }
+  
+  .character-sprite {
+    font-size: 1.5rem;
+  }
+  
+  .progress-bar {
+    width: 85%;
+    height: 12px;
+  }
+  
+  .level-indicator {
+    font-size: 0.6rem;
+  }
+  
+  /* Navigation adjustments */
+  .portfolio-header nav {
+    margin-top: 0.5rem;
+    gap: 0.3rem;
+  }
+  
+  .portfolio-header nav a {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.6rem;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 60px;
+  }
+  
+  .nav-icon {
+    font-size: 0.7rem;
+  }
+  
+  /* Main content adjustments */
+  .road-container {
+    padding: 1rem 0;
+  }
+  
+  .navigation-controls {
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .backward-btn, .forward-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .current-section-display {
+    margin-bottom: 1rem;
+  }
+  
+  .section-character {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 0.9rem;
+  }
+  
+  /* Section content adjustments */
+  .portfolio-section {
+    padding: 0.5rem 0.5vw;
+    width: 99%;
+  }
+  
+  .portfolio-section h2 {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* About section mobile optimizations */
+  .hero-intro {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-intro p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .stat-category {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-category h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .stat {
+    padding: 0.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .stat-value {
+    font-size: 0.7rem;
+  }
+  
+  .skill-badges {
+    gap: 0.4rem;
+  }
+  
+  .skill-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.6rem;
+  }
+  
+  /* Hero attributes mobile */
+  .hero-attributes {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-attributes h3 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .attribute {
+    padding: 0.8rem;
+  }
+  
+  .attribute-name {
+    font-size: 0.7rem;
+  }
+  
+  .attribute-value {
+    font-size: 0.7rem;
+  }
+  
+  .attribute-bar {
+    height: 10px;
+  }
+  
+  /* Hero quests mobile */
+  .hero-quests {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-quests h3 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quest-item {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .quest-icon {
+    font-size: 1.5rem;
+    align-self: center;
+  }
+  
+  .quest-content h4 {
+    font-size: 0.8rem;
+  }
+  
+  .quest-content p {
+    font-size: 0.7rem;
+  }
+  
+  .quest-reward {
+    font-size: 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  /* Hero mission mobile */
+  .hero-mission {
+    padding: 1rem;
+  }
+  
+  .hero-mission h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .hero-mission p {
+    font-size: 0.8rem;
+  }
+  
+  /* Project cards mobile */
+  .project-cards {
+    gap: 1rem;
+  }
+  
+  .project-card {
+    padding: 1rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .project-card .card-header h3 {
+    font-size: 0.8rem;
+    word-break: break-word;
+  }
+  
+  .project-icon {
+    font-size: 1.5rem;
+  }
+  
+  .expand-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .card-details {
+    padding: 0.8rem 0;
+  }
+  
+  .card-details p {
+    font-size: 0.7rem;
+  }
+  
+  /* Quest sections mobile */
+  .quest-section {
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quest-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .side-quest-info {
+    padding: 0.8rem 0;
+  }
+  
+  .side-quest-info p {
+    font-size: 0.7rem;
+  }
+  
+  .quest-type {
+    font-size: 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .small-btn {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 0.6rem !important;
+  }
+  
+  /* Quest summary mobile */
+  .quest-summary {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    margin-top: 1.5rem;
+  }
+  
+  .summary-item {
+    justify-content: center;
+  }
+  
+  .summary-icon {
+    font-size: 1rem;
+  }
+  
+  .summary-text {
+    font-size: 0.8rem;
+  }
+  
+  /* Resume section mobile */
+  .resume-section h3 {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .info-item, .education-item, .skills-category, .project-item, .achievement-item, .certification-item {
+    padding: 0.8rem;
+  }
+  
+  .info-label {
+    font-size: 0.7rem;
+  }
+  
+  .info-value {
+    font-size: 0.7rem;
+  }
+  
+  .education-header h4 {
+    font-size: 0.9rem;
+  }
+  
+  .education-year {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .education-item p {
+    font-size: 0.7rem;
+  }
+  
+  .skills-category h4 {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .skill-tag {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.6rem;
+  }
+  
+  .project-header h4 {
+    font-size: 0.9rem;
+  }
+  
+  .project-tech {
+    font-size: 0.6rem;
+  }
+  
+  .project-year {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .project-details li {
+    font-size: 0.7rem;
+  }
+  
+  .achievement-item {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .achievement-icon {
+    font-size: 2rem;
+  }
+  
+  .achievement-content h4 {
+    font-size: 0.9rem;
+  }
+  
+  .achievement-content p {
+    font-size: 0.7rem;
+  }
+  
+  .certification-item {
+    padding: 0.8rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .cert-icon {
+    font-size: 1.2rem;
+  }
+  
+  .certification-item span:last-child {
+    font-size: 0.7rem;
+  }
+  
+  /* Download section mobile */
+  .download-section {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .download-section p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Contact section mobile */
+  .contact-info {
+    gap: 1rem;
+  }
+  
+  .contact-item {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-icon {
+    font-size: 1.5rem;
+  }
+  
+  .contact-item a {
+    font-size: 0.8rem;
+  }
+  
+  /* Game placeholder mobile */
+  .game-placeholder {
+    padding: 2rem 1rem;
+  }
+  
+  .game-icon {
+    font-size: 3rem;
+  }
+  
+  /* Skills section mobile */
+  .skill-grid {
+    gap: 1rem;
+  }
+  
+  .skill-category {
+    padding: 1rem;
+  }
+  
+  .skill-category h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .skill-items {
+    gap: 0.5rem;
+  }
+  
+  .skill-item {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Achievements section mobile */
+  .achievement-cards {
+    gap: 1rem;
+  }
+  
+  .achievement-card {
+    padding: 1rem;
+  }
+  
+  .achievement-card h3 {
+    font-size: 0.9rem;
+  }
+  
+  .achievement-card p {
+    font-size: 0.7rem;
+  }
+  
+  .achievement-rarity {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+  .portfolio-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .portfolio-header nav a {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .quest-item {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .quest-icon {
+    align-self: flex-start;
+  }
+  
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skill-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .achievement-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .portfolio-header {
+    padding: 0.3rem 1rem;
+  }
+  
+  .portfolio-header h1 {
+    font-size: 1rem;
+    flex-direction: row;
+  }
+  
+  .portfolio-header nav {
+    margin-top: 0.3rem;
+  }
+  
+  .portfolio-header nav a {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.5rem;
+    flex-direction: row;
+  }
+  
+  .road-container {
+    padding: 0.5rem 0;
+  }
+  
+  .navigation-controls {
+    margin-bottom: 0.5rem;
+  }
+  
+  .current-section-display {
+    margin-bottom: 0.5rem;
+  }
+  
+  .portfolio-section {
+    padding: 0.3rem 1vw;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .portfolio-header nav a {
+    border-width: 2px;
+  }
+  
+  .game-btn {
+    border-width: 2px;
+  }
+  
+  .project-card {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .character-sprite {
+    animation: none;
+  }
+  
+  .section-character {
+    animation: none;
+  }
+  
+  .progress-fill {
+    transition: none;
+  }
+  
+  .attribute-fill {
+    transition: none;
+  }
+  
+  .fade-in {
+    animation: none;
+  }
+  
+  .portfolio-header nav a:hover {
+    transform: none;
+  }
+  
+  .skill-badge:hover {
+    transform: none;
+  }
+  
+  .skill-tag:hover {
+    transform: none;
+  }
+  
+  .project-card:hover {
+    transform: none;
   }
 }
